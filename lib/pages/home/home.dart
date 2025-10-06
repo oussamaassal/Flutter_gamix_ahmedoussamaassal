@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gstore_esprit/entities/game.dart';
 
-import '../../entities/game.dart';
 import 'product_info.dart';
 
 class Home extends StatefulWidget {
@@ -23,6 +23,9 @@ class _HomeState extends State<Home> {
     _games.add(Game("assets/images/fifa.jpg", "FIFA 22", _description, 100, 5000));
     super.initState();
   }
+  void _onProductPurchased() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class _HomeState extends State<Home> {
       body: ListView.builder(
         itemCount: _games.length,
         itemBuilder: (BuildContext context, int index) {
-          return ProductInfo(_games[index]);
+          return ProductInfo(game :_games[index], onPurchase: _onProductPurchased,);
         },
       ),
     );

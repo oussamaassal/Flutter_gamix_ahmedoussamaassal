@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '/../../entities/game.dart';
-import 'CartItem.dart'; // Import the new CartItem widget
+import 'home/CartItem.dart'; // Import the new CartItem widget
 
 class Panier extends StatefulWidget {
   const Panier({super.key});

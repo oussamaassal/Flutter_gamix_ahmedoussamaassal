@@ -3,7 +3,7 @@ class Game {
   final String title;
   final String description;
   final int price;
-  final int quantity;
+  int quantity;
 
   Game(this.image, this.title, this.description, this.price, this.quantity);
 

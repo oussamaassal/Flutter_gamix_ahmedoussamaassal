@@ -1,45 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:gstore_esprit/entities/game.dart';
 
 class ProductDetails extends StatefulWidget {
-  final String _image;
-  final String _title;
-  final String _description;
-  final int _price;
-  final int _quantity;
+  final Game game;
+  final VoidCallback onPurchase;
 
-  const ProductDetails(this._image, this._title, this._description, this._price, this._quantity, {super.key});
+  const ProductDetails({required this.game,required this.onPurchase, super.key});
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  late int _currentQuantity;
+
+  late int displayQuantity;
 
   @override
   void initState() {
-    _currentQuantity = widget._quantity;
     super.initState();
+    displayQuantity = widget.game.quantity;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._title),
+        title: Text(widget.game.title),
       ),
       body: Column(
         children: [
           Container(
               width: double.infinity,
               margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: Image.asset(widget._image, width: 460, height: 215)),
+              child: Image.asset(widget.game.image, width: 460, height: 215)),
           Container(
             margin: const EdgeInsets.fromLTRB(20, 0, 20, 50),
-            child: Text(widget._description),
+            child: Text(widget.game.description),
           ),
-          Text("${widget._price} TND", textScaleFactor: 3),
-          Text("Exemplaires disponibles : $_currentQuantity"),
+          Text("${widget.game.price} TND", textScaleFactor: 3),
+          Text("Exemplaires disponibles : $displayQuantity"),
           const SizedBox(
             height: 50,
           ),
@@ -59,7 +58,9 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               onPressed: () {
                 setState(() {
-                  _currentQuantity--;
+                  widget.game.quantity--;
+                  displayQuantity = widget.game.quantity;
+                  widget.onPurchase();
                 });
               },
             ),

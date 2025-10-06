@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gstore_esprit/pages/home/Panier.dart';
+import 'package:gstore_esprit/pages/Panier.dart';
 import 'package:gstore_esprit/pages/parametre_profile.dart';
 
 import 'pages/library/my_games.dart';
@@ -17,11 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(title: "Workshops 5GamiX", //home: Home()
+    return const MaterialApp(title: "Workshops 5GamiX",
+        // home: Home()
         // home: Signup()
         // home: Signin()
         // home: ParametreProfile()
-         home: Panier()
+        // home: Panier()
         // home: MyGames()
         // home: ProductDetails(
         //     "assets/images/dmc5.jpg",

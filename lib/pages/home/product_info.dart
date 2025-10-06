@@ -1,39 +1,51 @@
 import 'package:flutter/material.dart';
-
-import '../../entities/game.dart';
+import 'package:gstore_esprit/entities/game.dart';
+import 'package:gstore_esprit/pages/product_details.dart';
 
 class ProductInfo extends StatelessWidget {
-  final Game _game;
-
-  const ProductInfo(this._game, {super.key});
-
+  final Game game;
+  final VoidCallback onPurchase; 
+  const ProductInfo({required this.game, required this.onPurchase, super.key});
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(10),
-            child: Image.asset(
-              _game.image,
-              width: 200,
-              height: 110,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetails(
+              game: game,
+              onPurchase: onPurchase,
             ),
           ),
-          const SizedBox(
-            width: 20,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(_game.title),
-              Text(
-                "${_game.price} TND",
-                textScaleFactor: 2,
-              )
-            ],
-          )
-        ],
+        );
+      },
+      child: Card(
+        child: Row(
+          children: [
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: Image.asset(
+                game.image,
+                width: 200,
+                height: 110,
+              ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(game.title),
+                Text(
+                  "${game.price} TND",
+                  textScaleFactor: 2,
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
